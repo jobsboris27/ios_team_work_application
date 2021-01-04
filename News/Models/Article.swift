@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct Article {
+struct Article: Codable {
   let image: String
   let title: String
   let text: String
   let date: Date
+  let url: String
 }
