@@ -167,10 +167,52 @@ class NetworkManager {
 
         do {
           let decoder = JSONDecoder()
-//          decoder.keyDecodingStrategy = .
-
           let currencyResponse = try decoder.decode(CurrencyResponse.self, from: rawResponse)
+
           completed(.success(self.mapCurrencyResponse(data: currencyResponse)))
+        } catch {
+          print("ERROR Decoding data")
+          print(error)
+          print(error.localizedDescription)
+          completed(.failure(.somethingWentWrong))
+        }
+    })
+  }
+  
+  /// Search  articles:
+  ///    NetworkManager.shared.searchArticles(query: "messi", completed: { result in
+  ///        switch result {
+  ///        case .failure(let error):
+  ///          print(error.rawValue)
+  ///          break
+  ///        case .success(let response):
+  ///          print(response)
+  ///          break
+  ///        }
+  ///      }
+  ///    )
+  public func searchArticles(query: String, completed: @escaping (Result<[Article], NetworkManagerError>) -> Void) {
+    guard let env = getEnv() else {
+      print("ENV file doesn't exit!")
+      return
+    }
+
+    let endpoint = apiUrl + "/search/v2/articlesearch.json?q=\(query)&api-key=\(env.value(forKey: "ApiKey")!)"
+
+    guard let url = URL(string: endpoint) else { return }
+
+    makeRequest(
+      url: url,
+      completed: completed,
+      decoded: { [weak self] (rawResponse: Data) in
+        guard let self = self else { return }
+
+        do {
+          let decoder = JSONDecoder()
+          decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+          let searchArticleResponse = try decoder.decode(SearchArticleResponse.self, from: rawResponse)
+          completed(.success(self.mapSearchArticleResponse(data: searchArticleResponse)))
         } catch {
           print("ERROR Decoding data")
           print(error)
@@ -271,6 +313,24 @@ extension NetworkManager {
     }
   }
   
+  private func mapSearchArticleResponse(data: SearchArticleResponse) -> [Article] {
+    return data.response.docs.map { (docItem) -> Article in
+      var imageName = "default"
+
+      if let media = docItem.multimedia.first {
+        imageName = "https://static01.nyt.com/\(media.url)"
+      }
+
+      return Article(
+        image: imageName,
+        title: docItem.leadParagraph,
+        text: "\(docItem.abstract)",
+        date: Date(),
+        url: docItem.webUrl
+      )
+    }
+  }
+
   private func mapCurrencyResponse(data: CurrencyResponse) -> [Currency] {
     return data.Valute.values.map { (valute) -> Currency in
       return Currency(name: valute.name, value: "\(valute.value)")
