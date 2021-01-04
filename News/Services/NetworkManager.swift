@@ -14,31 +14,6 @@ enum NetworkManagerError: String, Error {
   case tooManyRequests = "Too many requests. You reached your per minute or per day rate limit."
 }
 
-/// How to use:
-///  Getting popular articles:
-///    NetworkManager.shared.getPopularArticles { result in
-///      switch result {
-///      case .failure(let error):
-///        print(error.rawValue)
-///        break
-///      case .success(let response):
-///        print(response)
-///        break
-///      }
-///    }
-///
-/// Getting  articles by category:
-///    NetworkManager.shared.getArticlesByCategory(category: "automobiles", completed: { result in
-///        switch result {
-///        case .failure(let error):
-///          print(error.rawValue)
-///          break
-///        case .success(let response):
-///          print(response)
-///          break
-///        }
-///      }
-///    )
 class NetworkManager {
   static let shared = NetworkManager()
   
@@ -50,7 +25,7 @@ class NetworkManager {
   
   private init() {}
   
-  // Mark - Public methods
+  // MARK: - Public methods
   func downloadImage(from urlString: String, competed: @escaping(UIImage?) -> Void) {
     let cacheKey = NSString(string: urlString)
     
@@ -83,6 +58,17 @@ class NetworkManager {
     task.resume()
   }
 
+  ///  Getting popular articles:
+  ///    NetworkManager.shared.getPopularArticles { result in
+  ///      switch result {
+  ///      case .failure(let error):
+  ///        print(error.rawValue)
+  ///        break
+  ///      case .success(let response):
+  ///        print(response)
+  ///        break
+  ///      }
+  ///    }
   public func getPopularArticles(completed: @escaping (Result<[Article], NetworkManagerError>) -> Void) {
     guard let env = getEnv() else {
       print("ENV file doesn't exit!")
@@ -114,6 +100,18 @@ class NetworkManager {
     })
   }
 
+  /// Getting  articles by category:
+  ///    NetworkManager.shared.getArticlesByCategory(category: "automobiles", completed: { result in
+  ///        switch result {
+  ///        case .failure(let error):
+  ///          print(error.rawValue)
+  ///          break
+  ///        case .success(let response):
+  ///          print(response)
+  ///          break
+  ///        }
+  ///      }
+  ///    )
   public func getArticlesByCategory(category: String, completed: @escaping (Result<[Article], NetworkManagerError>) -> Void) {
     guard let env = getEnv() else {
       print("ENV file doesn't exit!")
@@ -145,8 +143,45 @@ class NetworkManager {
     })
   }
   
-  // Mark - Private methods
-  private func makeRequest(url: URL, completed: @escaping (Result<[Article], NetworkManagerError>) -> Void, decoded: @escaping (_ rawResponse: Data) -> Void) {
+  /// Getting  currency lis:
+  ///    NetworkManager.shared.getCurrencyList { result in
+  ///      switch result {
+  ///      case .failure(let error):
+  ///        print(error.rawValue)
+  ///        break
+  ///      case .success(let response):
+  ///        print(response)
+  ///        break
+  ///      }
+  ///    }
+  public func getCurrencyList(completed: @escaping (Result<[Currency], NetworkManagerError>) -> Void) {
+    let endpoint = "https://www.cbr-xml-daily.ru/daily_json.js"
+
+    guard let url = URL(string: endpoint) else { return }
+
+    makeRequest(
+      url: url,
+      completed: completed,
+      decoded: { [weak self] (rawResponse: Data) in
+        guard let self = self else { return }
+
+        do {
+          let decoder = JSONDecoder()
+//          decoder.keyDecodingStrategy = .
+
+          let currencyResponse = try decoder.decode(CurrencyResponse.self, from: rawResponse)
+          completed(.success(self.mapCurrencyResponse(data: currencyResponse)))
+        } catch {
+          print("ERROR Decoding data")
+          print(error)
+          print(error.localizedDescription)
+          completed(.failure(.somethingWentWrong))
+        }
+    })
+  }
+  
+  // MARK: - Private methods
+  private func makeRequest<T>(url: URL, completed: @escaping (Result<[T], NetworkManagerError>) -> Void, decoded: @escaping (_ rawResponse: Data) -> Void) {
     let task = URLSession.shared.dataTask(with: url) { data, response, error in
       if let _ = error {
         completed(.failure(.somethingWentWrong))
@@ -187,8 +222,8 @@ class NetworkManager {
   }
 }
 
-// Mark - Extentions
-// Mark = Mappers
+// MARK: - Extentions
+// MARK: - Mappers
 extension NetworkManager {
   private func mapPopularArticlesResponse(data: PopularArticlesResponse) -> [Article] {
     let dateFormatter = DateFormatter()
@@ -233,6 +268,12 @@ extension NetworkManager {
         date: date,
         url: result.url
       )
+    }
+  }
+  
+  private func mapCurrencyResponse(data: CurrencyResponse) -> [Currency] {
+    return data.Valute.values.map { (valute) -> Currency in
+      return Currency(name: valute.name, value: "\(valute.value)")
     }
   }
 }
