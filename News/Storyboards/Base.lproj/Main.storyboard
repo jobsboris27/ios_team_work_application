@@ -38,22 +38,34 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzW-o7-Eyi">
-                                                    <rect key="frame" x="24.5" y="18" width="31" height="14.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9u4-Tg-ExA">
+                                                    <rect key="frame" x="24.5" y="10.5" width="31" height="29"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzW-o7-Eyi">
+                                                            <rect key="frame" x="0.0" y="0.0" width="31" height="14.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIE-qh-Cp4">
+                                                            <rect key="frame" x="0.0" y="14.5" width="31" height="14.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ZzW-o7-Eyi" firstAttribute="centerX" secondItem="Wxf-Nk-PnJ" secondAttribute="centerX" id="YBb-he-dAU"/>
-                                                <constraint firstItem="ZzW-o7-Eyi" firstAttribute="centerY" secondItem="Wxf-Nk-PnJ" secondAttribute="centerY" id="bu8-KK-ylt"/>
+                                                <constraint firstItem="9u4-Tg-ExA" firstAttribute="centerX" secondItem="Wxf-Nk-PnJ" secondAttribute="centerX" id="22n-He-gy3"/>
+                                                <constraint firstItem="9u4-Tg-ExA" firstAttribute="centerY" secondItem="Wxf-Nk-PnJ" secondAttribute="centerY" id="lwd-fC-eQi"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="currencyLabel" destination="ZzW-o7-Eyi" id="mjN-gC-0rm"/>
+                                            <outlet property="label" destination="ZzW-o7-Eyi" id="TS1-N8-4qg"/>
+                                            <outlet property="value" destination="OIE-qh-Cp4" id="eCp-mH-dcm"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -72,6 +84,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Лента" id="Qs8-KI-7Ot"/>
+                    <connections>
+                        <outlet property="currencyCollectionView" destination="TBh-R1-3NG" id="xvn-H7-btm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

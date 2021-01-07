@@ -333,7 +333,7 @@ extension NetworkManager {
 
   private func mapCurrencyResponse(data: CurrencyResponse) -> [Currency] {
     return data.Valute.values.map { (valute) -> Currency in
-      return Currency(name: valute.name, value: "\(valute.value)")
+      return Currency(name: valute.charCode, value: "\(valute.value)")
     }
   }
 }

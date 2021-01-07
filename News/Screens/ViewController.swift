@@ -8,50 +8,48 @@
 import UIKit
 
 class ViewController: UIViewController {
-        
+  // MARK: IBOutlets
+  @IBOutlet var currencyCollectionView: UICollectionView!
+  
+  // MARK: Private properties
+  private var currencyList: [Currency] = []
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkManager.shared.getCurrencyList { result in
+      
+        currencyCollectionView.delegate = self
+        currencyCollectionView.dataSource = self
+
+        NetworkManager.shared.getCurrencyList { [weak self] result in
             switch result {
                 case .failure(let error):
                     print(error.rawValue)
                     break
                 case .success(let response):
-                    print(response)
-                    break
+                  DispatchQueue.main.async {
+                    self?.currencyList = response
+                    self?.currencyCollectionView.reloadData()
+                  }
+                  break
             }
         }
     }
-
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+      return currencyList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "currencyCell", for: indexPath) as! CurrencyCollectionViewCell
         cell.layer.cornerRadius = 10
         
-        NetworkManager.shared.getCurrencyList { result in
-            switch result {
-                case .failure(let error):
-                    print(error.rawValue)
-                    break
-                case .success(let response):
-                    print(response)
-                    let curr = response[indexPath.row]
-                    cell.currencyLabel.text = "\(curr.name) \n \(curr.value)"
-                    break
-            }
-        }
-        
+        cell.label.text = currencyList[indexPath.row].name
+        cell.value.text = currencyList[indexPath.row].value
+
         return cell
     }
-
-
 }
 
 
