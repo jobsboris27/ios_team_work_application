@@ -74,17 +74,64 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="CUS-oC-ghR"/>
                                 </connections>
                             </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eq4-G2-9Xs">
+                                <rect key="frame" x="0.0" y="112" width="375" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="9yS-j8-UlN"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1wZ-4Z-yax">
+                                    <size key="itemSize" width="100" height="40"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCell" id="tHK-7C-3Nm" customClass="CategoryCollectionViewCell" customModule="News" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Kbf-Bx-dd7">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olT-K0-txL">
+                                                    <rect key="frame" x="29.5" y="10" width="41.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemPinkColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="olT-K0-txL" firstAttribute="centerY" secondItem="Kbf-Bx-dd7" secondAttribute="centerY" id="Kir-zY-tVN"/>
+                                                <constraint firstItem="olT-K0-txL" firstAttribute="centerX" secondItem="Kbf-Bx-dd7" secondAttribute="centerX" id="LZK-KJ-7PN"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="categoryLabel" destination="olT-K0-txL" id="X5w-4I-G91"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="yuB-bO-euH"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="8zg-fh-W2t"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TBh-R1-3NG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="AiI-qF-TEl"/>
+                            <constraint firstItem="eq4-G2-9Xs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="F2y-9n-biR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eq4-G2-9Xs" secondAttribute="trailing" id="Hrf-0T-eTJ"/>
+                            <constraint firstItem="eq4-G2-9Xs" firstAttribute="top" secondItem="TBh-R1-3NG" secondAttribute="bottom" constant="8" symbolic="YES" id="Zwt-oh-1Ko"/>
                             <constraint firstItem="TBh-R1-3NG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ifU-Sa-Cyv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TBh-R1-3NG" secondAttribute="trailing" id="p2T-O9-KRx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Лента" id="Qs8-KI-7Ot"/>
                     <connections>
+                        <outlet property="categoryCollectionView" destination="eq4-G2-9Xs" id="1MP-e8-21K"/>
                         <outlet property="currencyCollectionView" destination="TBh-R1-3NG" id="xvn-H7-btm"/>
                     </connections>
                 </viewController>
@@ -194,6 +241,9 @@
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
