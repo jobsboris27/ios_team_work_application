@@ -21,16 +21,7 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-        
         super.setSelected(selected, animated: animated)
-//
-//        let view = UIView()
-//        view.backgroundColor = .blue
-//        UIView.animate(withDuration: 0.5,
-//                           animations: { [weak self] in
-//                            self?.selectedBackgroundView = view
-//                            //super.setSelected(selected, animated: animated)
-//                           })
     }
     
 }
