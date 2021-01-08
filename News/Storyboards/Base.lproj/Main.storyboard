@@ -121,17 +121,11 @@
                                                 <constraint firstAttribute="bottom" secondItem="Hcb-g8-P2g" secondAttribute="bottom" constant="32" id="tVs-tl-6Vb"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="categotyLabel" destination="c5q-K6-Ipg" id="JFp-ic-Fb4"/>
-                                            <outlet property="dateLabel" destination="w2P-n1-1l8" id="Xb4-uH-Mbe"/>
-                                            <outlet property="feedLabel" destination="paL-j6-aTT" id="VRQ-Up-dtA"/>
-                                            <outlet property="preview" destination="Rtz-ve-uwp" id="O5F-cV-ZbJ"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="kYY-EG-4Z4" id="c3Y-hV-pp6"/>
-                                    <outlet property="delegate" destination="kYY-EG-4Z4" id="4CS-C2-C5S"/>
+                                    <outlet property="dataSource" destination="kYY-EG-4Z4" id="pVe-Tz-gSu"/>
+                                    <outlet property="delegate" destination="kYY-EG-4Z4" id="9v4-Jp-NyG"/>
                                 </connections>
                             </tableView>
                         </subviews>
