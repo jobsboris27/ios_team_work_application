@@ -12,9 +12,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet var currencyCollectionView: UICollectionView!
     @IBOutlet var categoryCollectionView: UICollectionView!
     
-    let category = ["Popular", "Sports", "Insider", "Auto", "Science"]
-    
   // MARK: Private properties
+    private let category = ["Popular", "Sports", "Insider", "Auto", "Science"]
+
     private var currencyList: [Currency] = []
   
     override func viewDidLoad() {
@@ -49,17 +49,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "currencyCell", for: indexPath) as! CurrencyCollectionViewCell
-        cell.layer.cornerRadius = 10
-        cell.label.text = currencyList[indexPath.row].name
-        cell.value.text = currencyList[indexPath.row].value
-        
         if collectionView == categoryCollectionView {
             let categoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCollectionViewCell
             categoryCell.categoryLabel.text = category[indexPath.row]
             categoryCell.backgroundColor = .blue
             return categoryCell
         }
+      
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "currencyCell", for: indexPath) as! CurrencyCollectionViewCell
+        cell.layer.cornerRadius = 10
+        cell.label.text = currencyList[indexPath.row].name
+        cell.value.text = currencyList[indexPath.row].value
 
         return cell
     }
