@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
   // MARK: IBOutlets
     @IBOutlet var currencyCollectionView: UICollectionView!
     @IBOutlet var categoryCollectionView: UICollectionView!
@@ -52,7 +52,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         if collectionView == categoryCollectionView {
             let categoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCollectionViewCell
             categoryCell.categoryLabel.text = category[indexPath.row]
-            categoryCell.backgroundColor = .blue
+            categoryCell.layer.cornerRadius = 10
             return categoryCell
         }
       
@@ -66,11 +66,23 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath)
-            cell.backgroundColor = .none
+            if let cell = collectionView.cellForItem(at: indexPath){
+                cell.backgroundColor = .none
+            }
         }
     }
+    
 }
 
-
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if collectionView == categoryCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCollectionViewCell
+            return CGSize(width: cell.categoryLabel.frame.width + 50, height: cell.categoryLabel.frame.height)
+        }
+        
+        return CGSize(width: 80, height: collectionView.frame.height)
+    }
+}
 
