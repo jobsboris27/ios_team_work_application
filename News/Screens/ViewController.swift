@@ -66,7 +66,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryCollectionView {
-            if let cell = collectionView.cellForItem(at: indexPath){
+            if let cell = collectionView.cellForItem(at: indexPath) {
                 cell.backgroundColor = .none
             }
         }
