@@ -17,7 +17,9 @@ extension FeedController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath)
         
         if let feedCell = cell as? FeedTableViewCell {
-            feedCell.textLabel?.text = "index \(indexPath)"
+            feedCell.feedLabel.text = "index \(indexPath)"
+            feedCell.preview.image = UIImage(named: "default")
+            feedCell.dateLabel.text = "date"
             return feedCell
         }
         
