@@ -8,11 +8,13 @@
 import UIKit
 
 extension FeedController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == categoryCollectionView {
             let categoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCollectionViewCell
             categoryCell.label.text = categories[indexPath.row]
             categoryCell.layer.cornerRadius = 10
+            
             return categoryCell
         }
         
@@ -23,5 +25,5 @@ extension FeedController: UICollectionViewDataSource {
         
         return cell
     }
-
+    
 }

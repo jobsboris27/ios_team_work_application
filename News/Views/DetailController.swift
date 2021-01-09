@@ -19,7 +19,7 @@ class DetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         dateLabel.text = feed?.date
         titleLabel.text = feed?.articalTitle
         previewImage.image = feed?.preview
@@ -30,6 +30,7 @@ class DetailController: UIViewController {
     }
     
     @IBAction func readMoreAction(_ sender: Any) {
+        
     }
     
 }

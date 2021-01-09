@@ -8,12 +8,13 @@
 import UIKit
 
 class FeedController: UIViewController {
+    
     // MARK: IBOutlets
     @IBOutlet var currencyCollectiionView: UICollectionView!
     @IBOutlet var categoryCollectionView: UICollectionView!
     @IBOutlet var feedTableView: FeedTableView!
     
-    // MARK: Private properties
+    // MARK: Internal properties
     internal let categories = ["Popular", "Sports", "Insider", "Auto", "Science"]
     internal var currencyList: [Currency] = []
     
@@ -75,6 +76,7 @@ class FeedController: UIViewController {
         }
     }
     
+    // MARK: Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         

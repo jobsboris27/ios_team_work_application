@@ -8,10 +8,13 @@
 import UIKit
 
 extension FeedController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (collectionView == categoryCollectionView) {
+            
             return categories.count
         }
+        
         return currencyList.count
     }
     
@@ -29,4 +32,5 @@ extension FeedController: UICollectionViewDelegate {
             cell.backgroundColor = .none
         }
     }
+    
 }

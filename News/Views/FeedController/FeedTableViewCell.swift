@@ -18,7 +18,6 @@ class FeedTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    
     public func set(article: Article, category: String) {
         previewImage.image = UIImage(named: "default")
         
