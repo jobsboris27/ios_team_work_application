@@ -6,24 +6,68 @@
 //
 
 import UIKit
+import WebKit
 
 class DetailController: UIViewController {
-
+    
+    var article: Article?
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var previewImage: UIImageView!
+    @IBOutlet var textLabel: UILabel!
+    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configure()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func backButtonAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+    @IBAction func readMoreAction(_ sender: Any) {
+        webView.isHidden = false
+        spinner.isHidden = false
+        spinner.startAnimating()
+        
+        load { (success) -> Void in
+            if (success) { spinner.stopAnimating() }
+        }
+        
+    }
+    
+    private func load(completion: (Bool) -> Void) {
+        if let url = URL(string: article!.url) {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
+        
+//        while (webView.isLoading) {}
+        
+        completion (true)
+    }
+    
+    
+    private func configure() {
+      if let article = article {
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = "dd.MM.yyyy"
+        
+        dateLabel.text = dateformat.string(from: article.date)
+        titleLabel.text = article.title
+        previewImage.image = UIImage(named: "default")
+        
+        textLabel.text = article.text
+        
+        if (article.image != "default") {
+            NetworkManager.shared.downloadImage(from: article.image) { [weak self] image in
+                guard let self = self else { return }
+                DispatchQueue.main.async { self.previewImage.image = image }
+            }
+        }
+      }
+    }
 }

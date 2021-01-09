@@ -2,29 +2,28 @@
 //  FeedController+UITableViewDataSource.swift
 //  News
 //
-//  Created by Вера Ксенофонтова on 07.01.2021.
+//  Created by Вера Ксенофонтова on 09.01.2021.
 //
 
 import UIKit
 
-
 extension FeedController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath)
+        let article = articles[indexPath.row]
         
         if let feedCell = cell as? FeedTableViewCell {
-            feedCell.feedLabel.text = "index \(indexPath)"
-            feedCell.preview.image = UIImage(named: "default")
-            feedCell.dateLabel.text = "date"
+            feedCell.set(article: article, category: currentCategory)
             return feedCell
         }
         
-        cell.textLabel?.text = "index \(indexPath)"
         return cell
     }
     
 }
+
