@@ -24,3 +24,4 @@ extension FeedController: UITableViewDataSource {
       return cell
     }
 }
+

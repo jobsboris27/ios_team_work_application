@@ -8,22 +8,28 @@
 import UIKit
 
 class DetailController: UIViewController {
-
+    
+    var feed: Feed?
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var previewImage: UIImageView!
+    @IBOutlet weak var textField: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        dateLabel.text = feed?.date
+        titleLabel.text = feed?.articalTitle
+        previewImage.image = feed?.preview
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func backButtonAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+    @IBAction func readMoreAction(_ sender: Any) {
+    }
+    
 }
