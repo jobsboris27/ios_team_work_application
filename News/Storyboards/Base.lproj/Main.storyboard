@@ -328,25 +328,42 @@
                                     <action selector="readMoreAction:" destination="YQs-lW-5ku" eventType="touchUpInside" id="dSd-k2-4Wb"/>
                                 </connections>
                             </button>
+                            <wkWebView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LaB-Fp-K8u">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Ewj-qb-Hzi">
+                                <rect key="frame" x="169" y="305" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="reH-BG-bCc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="MXE-ie-EN4" firstAttribute="leading" secondItem="reH-BG-bCc" secondAttribute="leading" constant="32" id="02U-w4-fNZ"/>
                             <constraint firstItem="eIv-gT-hIF" firstAttribute="top" secondItem="reH-BG-bCc" secondAttribute="top" constant="32" id="4Ih-Qo-lv2"/>
+                            <constraint firstItem="reH-BG-bCc" firstAttribute="bottom" secondItem="LaB-Fp-K8u" secondAttribute="bottom" id="6q4-RK-M5b"/>
+                            <constraint firstItem="reH-BG-bCc" firstAttribute="trailing" secondItem="LaB-Fp-K8u" secondAttribute="trailing" id="DUa-0G-B88"/>
                             <constraint firstItem="reH-BG-bCc" firstAttribute="bottom" secondItem="xii-zd-02U" secondAttribute="bottom" constant="32" id="FOC-A1-Bop"/>
                             <constraint firstItem="MXE-ie-EN4" firstAttribute="top" secondItem="oI7-tE-9MY" secondAttribute="bottom" constant="16" id="ICh-Ta-yfr"/>
                             <constraint firstItem="reH-BG-bCc" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oI7-tE-9MY" secondAttribute="trailing" constant="32" id="N6P-dW-a4a"/>
                             <constraint firstItem="6eY-0Z-5VO" firstAttribute="width" secondItem="1AC-VN-1CS" secondAttribute="height" multiplier="3:2" id="NKw-xn-t15"/>
                             <constraint firstItem="1AC-VN-1CS" firstAttribute="leading" secondItem="reH-BG-bCc" secondAttribute="leading" constant="32" id="On7-HB-3rd"/>
+                            <constraint firstItem="Ewj-qb-Hzi" firstAttribute="centerX" secondItem="PZx-WA-ey0" secondAttribute="centerX" id="Pom-e3-tLZ"/>
                             <constraint firstItem="reH-BG-bCc" firstAttribute="trailing" secondItem="1AC-VN-1CS" secondAttribute="trailing" constant="32" id="QOu-fc-tVx"/>
                             <constraint firstItem="6eY-0Z-5VO" firstAttribute="top" secondItem="1AC-VN-1CS" secondAttribute="bottom" constant="16" id="SmP-ux-ZhV"/>
                             <constraint firstItem="oI7-tE-9MY" firstAttribute="leading" secondItem="reH-BG-bCc" secondAttribute="leading" constant="32" id="XCZ-g9-czi"/>
                             <constraint firstItem="xii-zd-02U" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6eY-0Z-5VO" secondAttribute="bottom" constant="32" id="YbF-4u-ZqM"/>
+                            <constraint firstItem="LaB-Fp-K8u" firstAttribute="top" secondItem="reH-BG-bCc" secondAttribute="top" id="bqT-sQ-Sgv"/>
                             <constraint firstItem="1AC-VN-1CS" firstAttribute="top" secondItem="MXE-ie-EN4" secondAttribute="bottom" constant="16" id="ckp-N9-o0M"/>
                             <constraint firstItem="reH-BG-bCc" firstAttribute="trailing" secondItem="xii-zd-02U" secondAttribute="trailing" constant="32" id="gCc-E7-LIf"/>
                             <constraint firstItem="eIv-gT-hIF" firstAttribute="leading" secondItem="reH-BG-bCc" secondAttribute="leading" constant="32" id="gfp-rQ-EqW"/>
+                            <constraint firstItem="Ewj-qb-Hzi" firstAttribute="centerY" secondItem="PZx-WA-ey0" secondAttribute="centerY" id="iOr-Vp-Fkb"/>
                             <constraint firstItem="oI7-tE-9MY" firstAttribute="top" secondItem="eIv-gT-hIF" secondAttribute="bottom" constant="32" id="iZw-Lh-A0p"/>
+                            <constraint firstItem="LaB-Fp-K8u" firstAttribute="leading" secondItem="reH-BG-bCc" secondAttribute="leading" id="kMD-it-sTJ"/>
                             <constraint firstItem="reH-BG-bCc" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MXE-ie-EN4" secondAttribute="trailing" constant="32" id="pli-JN-cQH"/>
                             <constraint firstItem="xii-zd-02U" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="reH-BG-bCc" secondAttribute="leading" constant="32" id="rk5-AL-2ZW"/>
                             <constraint firstItem="6eY-0Z-5VO" firstAttribute="leading" secondItem="reH-BG-bCc" secondAttribute="leading" constant="32" id="wec-Ag-Shc"/>
@@ -357,8 +374,10 @@
                     <connections>
                         <outlet property="dateLabel" destination="oI7-tE-9MY" id="iO9-sB-aKL"/>
                         <outlet property="previewImage" destination="1AC-VN-1CS" id="X2B-dB-Zb8"/>
+                        <outlet property="spinner" destination="Ewj-qb-Hzi" id="Wxi-HY-YIU"/>
                         <outlet property="textField" destination="6eY-0Z-5VO" id="B5O-gE-Tio"/>
                         <outlet property="titleLabel" destination="MXE-ie-EN4" id="yJO-zt-Ein"/>
+                        <outlet property="webView" destination="LaB-Fp-K8u" id="S9w-QH-ELT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUa-ut-TwG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

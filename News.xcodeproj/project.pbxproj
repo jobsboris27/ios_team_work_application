@@ -26,6 +26,7 @@
 		44312BA525A9FBA50061A19E /* PopularArticleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44312BA425A9FBA50061A19E /* PopularArticleResult.swift */; };
 		44312BA825A9FBB30061A19E /* PopularMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44312BA725A9FBB30061A19E /* PopularMedia.swift */; };
 		44312BAB25A9FBC60061A19E /* PopularMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44312BAA25A9FBC60061A19E /* PopularMediaItem.swift */; };
+		44312BAE25A9FD9F0061A19E /* NetworkManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44312BAD25A9FD9F0061A19E /* NetworkManagerError.swift */; };
 		443F4E5625A90A1E0029FFEC /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443F4E5525A90A1E0029FFEC /* FeedController.swift */; };
 		4453FB2525A90B2400B20F69 /* FeedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4453FB2425A90B2400B20F69 /* FeedTableView.swift */; };
 		4453FB2925A90BD000B20F69 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4453FB2825A90BD000B20F69 /* FeedTableViewCell.swift */; };
@@ -69,6 +70,7 @@
 		44312BA425A9FBA50061A19E /* PopularArticleResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularArticleResult.swift; sourceTree = "<group>"; };
 		44312BA725A9FBB30061A19E /* PopularMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMedia.swift; sourceTree = "<group>"; };
 		44312BAA25A9FBC60061A19E /* PopularMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMediaItem.swift; sourceTree = "<group>"; };
+		44312BAD25A9FD9F0061A19E /* NetworkManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerError.swift; sourceTree = "<group>"; };
 		443F4E5525A90A1E0029FFEC /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		4453FB2425A90B2400B20F69 /* FeedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableView.swift; sourceTree = "<group>"; };
 		4453FB2825A90BD000B20F69 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				A1B455F5259C971D002B1174 /* NetworkManager.swift */,
+				44312BAD25A9FD9F0061A19E /* NetworkManagerError.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				44312B8925A9F5190061A19E /* FeedController+UICollectionViewDelegate.swift in Sources */,
 				44312B9625A9FAB10061A19E /* SearchArticleDocsResponse.swift in Sources */,
 				44312B8625A9F4F20061A19E /* FeedController+UICollectionViewDelegateFlowLayout.swift in Sources */,
+				44312BAE25A9FD9F0061A19E /* NetworkManagerError.swift in Sources */,
 				44312B9C25A9FAD20061A19E /* SearchArticleDocsItemMediaResponse.swift in Sources */,
 				442D732D25A9A1DE00B25B68 /* SearchTableView.swift in Sources */,
 				44312B8025A9EC580061A19E /* FeedController+UITableViewDelegate.swift in Sources */,

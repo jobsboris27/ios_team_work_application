@@ -12,6 +12,5 @@ struct Feed {
     var date: String
     var articalTitle: String
     var preview: UIImage
-    //    var text: String
     
 }
