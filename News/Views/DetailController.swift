@@ -10,22 +10,18 @@ import WebKit
 
 class DetailController: UIViewController {
     
-    var feed: Feed?
+    var article: Article?
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var previewImage: UIImageView!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet var textLabel: UILabel!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        dateLabel.text = feed?.date
-        titleLabel.text = feed?.articalTitle
-        previewImage.image = UIImage(named: "default")
-
+        configure()
     }
     
     @IBAction func backButtonAction(_ sender: Any) {
@@ -33,7 +29,6 @@ class DetailController: UIViewController {
     }
     
     @IBAction func readMoreAction(_ sender: Any) {
-        
         webView.isHidden = false
         spinner.isHidden = false
         spinner.startAnimating()
@@ -44,8 +39,8 @@ class DetailController: UIViewController {
         
     }
     
-    func load (completion: (Bool) -> Void) {
-        if let url = URL(string: "https://www.apple.com") {
+    private func load(completion: (Bool) -> Void) {
+        if let url = URL(string: article!.url) {
             let request = URLRequest(url: url)
             webView.load(request)
         }
@@ -55,4 +50,24 @@ class DetailController: UIViewController {
         completion (true)
     }
     
+    
+    private func configure() {
+      if let article = article {
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = "dd.MM.yyyy"
+        
+        dateLabel.text = dateformat.string(from: article.date)
+        titleLabel.text = article.title
+        previewImage.image = UIImage(named: "default")
+        
+        textLabel.text = article.text
+        
+        if (article.image != "default") {
+            NetworkManager.shared.downloadImage(from: article.image) { [weak self] image in
+                guard let self = self else { return }
+                DispatchQueue.main.async { self.previewImage.image = image }
+            }
+        }
+      }
+    }
 }

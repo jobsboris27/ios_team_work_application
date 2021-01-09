@@ -72,8 +72,6 @@ class NetworkManager {
         
         let endpoint = apiUrl + "/mostpopular/v2/viewed/7.json?api-key=\(env.value(forKey: "ApiKey")!)".addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         
-        print("RESULT \(endpoint)")
-        
         guard let url = URL(string: endpoint) else {
             completed(.failure(.somethingWentWrong))
             return
@@ -308,7 +306,7 @@ extension NetworkManager {
             return Article(
                 image: imageName,
                 title: result.title,
-                text: "\(result.abstract) \(result.desFacet.joined(separator: ", "))",
+                text: "\(result.abstract)",
                 date: date,
                 url: result.url
             )

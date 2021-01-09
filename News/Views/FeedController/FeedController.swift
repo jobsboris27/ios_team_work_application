@@ -15,8 +15,11 @@ class FeedController: UIViewController {
     @IBOutlet var feedTableView: FeedTableView!
     
     // MARK: Internal properties
-    internal let categories = ["Popular", "Sports", "Insider", "Auto", "Science"]
+    internal let categories = ["Popular", "Sports", "Insider", "Health", "Science"]
     internal var currencyList: [Currency] = []
+    
+    // MARK: Private properties
+    private var containerView: UIView!
     
     // MARK: Public properties
     public var articles: [Article] = []
@@ -24,7 +27,7 @@ class FeedController: UIViewController {
     public var currentCategory: String = "Popular" {
         didSet {
             if (currentCategory == "Popular") {
-                loadPupolarArticles()
+                loadPopularArticles()
             } else {
                 loadArticlesByCategory(category: currentCategory.lowercased())
             }
@@ -32,7 +35,8 @@ class FeedController: UIViewController {
     }
     
     // MARK: Private methods
-    private func loadPupolarArticles() {
+    private func loadPopularArticles() {
+        showLoadingView()
         NetworkManager.shared.getPopularArticles() { [weak self] result in
             switch result {
             case .failure(let error):
@@ -43,10 +47,12 @@ class FeedController: UIViewController {
                 DispatchQueue.main.async { self?.feedTableView.reloadData() }
                 break
             }
+          self?.dismissLoadingView()
         }
     }
     
     private func loadArticlesByCategory(category: String) {
+        showLoadingView()
         NetworkManager.shared.getArticlesByCategory(category: category) { [weak self] result in
             switch result {
             case .failure(let error):
@@ -57,6 +63,7 @@ class FeedController: UIViewController {
                 DispatchQueue.main.async { self?.feedTableView.reloadData() }
                 break
             }
+          self?.dismissLoadingView()
         }
     }
     
@@ -75,6 +82,18 @@ class FeedController: UIViewController {
             }
         }
     }
+  
+    private func showLoadingView() {
+      DispatchQueue.main.async {
+        self.feedTableView.alpha = 0.3
+      }
+    }
+  
+    private func dismissLoadingView() {
+      DispatchQueue.main.async {
+        self.feedTableView.alpha = 1
+      }
+    }
     
     // MARK: Lifecycle methods
     override func viewDidLoad() {
@@ -86,8 +105,10 @@ class FeedController: UIViewController {
             collectionView!.dataSource = self
         }
         
-        loadPupolarArticles()
+        loadPopularArticles()
         loadCurrencyList()
+      
+        feedTableView.backgroundColor = .black
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +118,7 @@ class FeedController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "openFeedSegue" else { return }
         guard let destiantion = segue.destination as? DetailController else { return }
-        destiantion.feed = sender as? Feed
+        destiantion.article = sender as? Article
     }
     
 }

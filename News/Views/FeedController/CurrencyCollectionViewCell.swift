@@ -8,8 +8,6 @@
 import UIKit
 
 class CurrencyCollectionViewCell: UICollectionViewCell {
-    
     @IBOutlet var label: UILabel!
     @IBOutlet var value: UILabel!
-    
 }

@@ -22,7 +22,7 @@ extension FeedController: UICollectionViewDelegate {
         if collectionView == categoryCollectionView {
             if let cell = collectionView.cellForItem(at: indexPath) {
                 currentCategory = categories[indexPath.row]
-                cell.backgroundColor = .cyan
+                cell.backgroundColor = .gray
             }
         }
     }
