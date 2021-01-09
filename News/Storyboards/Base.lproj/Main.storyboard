@@ -121,6 +121,12 @@
                                                 <constraint firstAttribute="bottom" secondItem="Hcb-g8-P2g" secondAttribute="bottom" constant="32" id="tVs-tl-6Vb"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="categoryLabel" destination="c5q-K6-Ipg" id="yM7-xE-j8X"/>
+                                            <outlet property="dateLabel" destination="w2P-n1-1l8" id="C3Z-gV-ymh"/>
+                                            <outlet property="feedLabel" destination="paL-j6-aTT" id="x9H-9a-KEs"/>
+                                            <outlet property="previewImage" destination="Rtz-ve-uwp" id="HrY-ur-OxW"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
