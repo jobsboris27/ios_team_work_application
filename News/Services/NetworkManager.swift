@@ -75,9 +75,15 @@ class NetworkManager {
       return
     }
 
-    let endpoint = apiUrl + "/mostpopular/v2/viewed/7.json?api-key=\(env.value(forKey: "ApiKey")!)"
+    let endpoint = apiUrl + "/mostpopular/v2/viewed/7.json?api-key=\(env.value(forKey: "ApiKey")!)".addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+    
+    print("RESULT \(endpoint)")
 
-    guard let url = URL(string: endpoint) else { return }
+    guard let url = URL(string: endpoint) else {
+      completed(.failure(.somethingWentWrong))
+      return
+    }
+
 
     makeRequest(
       url: url,
@@ -118,10 +124,11 @@ class NetworkManager {
       return
     }
 
-    let endpoint = apiUrl + "/topstories/v2/\(category).json?api-key=\(env.value(forKey: "ApiKey")!)"
-
+    let endpoint = apiUrl + "/topstories/v2/\(category).json?api-key=\(env.value(forKey: "ApiKey")!)".addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+    
+    print(endpoint)
     guard let url = URL(string: endpoint) else { return }
-
+    
     makeRequest(
       url: url,
       completed: completed,
@@ -155,7 +162,7 @@ class NetworkManager {
   ///      }
   ///    }
   public func getCurrencyList(completed: @escaping (Result<[Currency], NetworkManagerError>) -> Void) {
-    let endpoint = "https://www.cbr-xml-daily.ru/daily_json.js"
+    let endpoint = "https://www.cbr-xml-daily.ru/daily_json.js".addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
 
     guard let url = URL(string: endpoint) else { return }
 
@@ -333,7 +340,7 @@ extension NetworkManager {
 
   private func mapCurrencyResponse(data: CurrencyResponse) -> [Currency] {
     return data.Valute.values.map { (valute) -> Currency in
-      return Currency(name: valute.name, value: "\(valute.value)")
+      return Currency(name: valute.charCode, value: "\(valute.value)")
     }
   }
 }

@@ -9,19 +9,18 @@ import UIKit
 
 extension FeedController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+      return articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath)
-            
-            if let feedCell = cell as? FeedTableViewCell {
-                feedCell.feedLabel.text = "index \(indexPath)"
-                feedCell.previewImage.image = UIImage(named: "default")
-                feedCell.dateLabel.text = "date"
-                return feedCell
-            }
-            
-            return cell
+      let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath)
+      let article = articles[indexPath.row]
+
+      if let feedCell = cell as? FeedTableViewCell {
+        feedCell.set(article: article, category: currentCategory)
+        return feedCell
+      }
+      
+      return cell
     }
 }

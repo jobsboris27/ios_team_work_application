@@ -24,5 +24,23 @@ class FeedTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+  
+  public func set(article: Article, category: String) {
+    previewImage.image = UIImage(named: "default")
+    
+    categoryLabel.text = category
+    feedLabel.text = article.title
+    
+    let dateformat = DateFormatter()
+    dateformat.dateFormat = "dd.MM.yyyy"
+    dateLabel.text = dateformat.string(from: article.date)
+
+    if (article.image != "default") {
+      NetworkManager.shared.downloadImage(from: article.image) { [weak self] image in
+        guard let self = self else { return }
+        DispatchQueue.main.async { self.previewImage.image = image }
+      }
+    }
+  }
 
 }
