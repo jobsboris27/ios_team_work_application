@@ -13,7 +13,6 @@ class DetailController: UIViewController {
     var article: Article?
     
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var previewImage: UIImageView!
     @IBOutlet var textLabel: UILabel!
     @IBOutlet weak var webView: WKWebView!
@@ -57,7 +56,6 @@ class DetailController: UIViewController {
         dateformat.dateFormat = "dd.MM.yyyy"
         
         dateLabel.text = dateformat.string(from: article.date)
-        titleLabel.text = article.title
         previewImage.image = UIImage(named: "default")
         
         textLabel.text = article.text
