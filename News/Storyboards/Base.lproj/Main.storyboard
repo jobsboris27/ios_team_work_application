@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Поиск-->
+        <!--Search-->
         <scene sceneID="7t7-Tf-Cla">
             <objects>
-                <viewController title="Поиск" id="624-65-9Pj" customClass="SearchController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Search" id="624-65-9Pj" customClass="SearchController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eJs-61-LnN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,7 +31,7 @@
                             <constraint firstItem="QZ6-cI-u3o" firstAttribute="top" secondItem="bhK-yA-udM" secondAttribute="top" id="nOP-iE-2AZ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Поиск" image="magnifyingglass" catalog="system" id="v4H-WL-Pk3"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="v4H-WL-Pk3"/>
                     <connections>
                         <segue destination="YQs-lW-5ku" kind="presentation" identifier="openSearchSegue" id="KzX-o4-XGz"/>
                     </connections>
@@ -40,10 +40,10 @@
             </objects>
             <point key="canvasLocation" x="3282.608695652174" y="491.51785714285711"/>
         </scene>
-        <!--Лента-->
+        <!--Feed-->
         <scene sceneID="lIm-n7-Syj">
             <objects>
-                <viewController title="Лента" id="kYY-EG-4Z4" customClass="FeedController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Feed" id="kYY-EG-4Z4" customClass="FeedController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rNg-Ez-Cwa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
